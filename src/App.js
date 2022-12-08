@@ -13,7 +13,6 @@ function App() {
         { name: uName, age: uAge, id: Math.random().toString() },
       ];
     });
-    console.log('usersList ', usersList);
   };
 
   return (

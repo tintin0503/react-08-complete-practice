@@ -24,13 +24,12 @@ const AddUser = props => {
         title: 'Invalid age',
         message: 'Please enter a valid age ( > 0).'
       })
+      return;
     }
 
-    console.log('enteredUsername ', enteredUsername);
-    console.log('enteredAge ', enteredAge);
     props.onAddUser(enteredUsername, enteredAge);
-    setEnteredAge('');
     setEnteredUsername('');
+    setEnteredAge('');
   }
 
   const usernameChangeHandler = (event) => {
@@ -46,9 +45,15 @@ const AddUser = props => {
   }
 
   return (
-    <>
-    {error && <ErrorModal title={error.title} message={error.message} onConfirm={errorHandler}/>}
-      <Card className={classes.input}>
+    [
+      error && (
+        <ErrorModal
+          key="error-modal"
+          title={error.title}
+          message={error.message}
+          onConfirm={errorHandler}
+        />),
+      <Card key="card-add-user" className={classes.input}>
         <form onSubmit={addUserHandler}>
           <label htmlFor="username">Username</label>
           <input
@@ -67,7 +72,7 @@ const AddUser = props => {
           <Button type="submit" >Add User</Button>
         </form>
       </Card>
-    </>
+    ]
   );
 };
 
